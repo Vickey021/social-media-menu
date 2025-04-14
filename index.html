@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shiny Responsive Radial Menu</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at center, #111 0%, #000 100%);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .menu-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .main-button {
+      width: 80px;
+      height: 80px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      color: white;
+      font-size: 32px;
+      cursor: pointer;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      transition: all 0.3s ease;
+    }
+
+    .icon {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f0ff, #00bfff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: white;
+      text-decoration: none;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      pointer-events: none;
+      box-shadow: 0 0 15px #00f0ff;
+      transition: all 0.5s ease;
+    }
+
+    .icon:hover {
+      transform: scale(1.1) translate(-50%, -50%);
+      box-shadow: 0 0 25px #00f0ff;
+    }
+
+    .menu-container.open .icon {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Responsive radial placement using JS-based class logic */
+    .menu-container.open .icon.icon-1 {
+      transform: translate(-50%, -50%) translate(0, -100px);
+    }
+
+    .menu-container.open .icon.icon-2 {
+      transform: translate(-50%, -50%) translate(70px, -70px);
+    }
+
+    .menu-container.open .icon.icon-3 {
+      transform: translate(-50%, -50%) translate(100px, 0);
+    }
+
+    .menu-container.open .icon.icon-4 {
+      transform: translate(-50%, -50%) translate(70px, 70px);
+    }
+
+    .menu-container.open .icon.icon-5 {
+      transform: translate(-50%, -50%) translate(0, 100px);
+    }
+
+    @media (max-width: 500px) {
+      .main-button {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+
+      .icon {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+
+      .menu-container.open .icon.icon-1 {
+        transform: translate(-50%, -50%) translate(0, -70px);
+      }
+
+      .menu-container.open .icon.icon-2 {
+        transform: translate(-50%, -50%) translate(50px, -50px);
+      }
+
+      .menu-container.open .icon.icon-3 {
+        transform: translate(-50%, -50%) translate(70px, 0);
+      }
+
+      .menu-container.open .icon.icon-4 {
+        transform: translate(-50%, -50%) translate(50px, 50px);
+      }
+
+      .menu-container.open .icon.icon-5 {
+        transform: translate(-50%, -50%) translate(0, 70px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-container" id="menu">
+    <button class="main-button" onclick="toggleMenu()">+</button>
+    <a href="https://facebook.com" class="icon icon-1" ><i class="fab fa-facebook-f"></i></a>
+    <a href="https://twitter.com" class="icon icon-2" target="_blank"><i class="fab fa-twitter"></i></a>
+    <a href="insta.html" class="icon icon-3" ><i class="fab fa-instagram"></i></a>
+    <a href="https://linkedin.com" class="icon icon-4" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="yt.html" class="icon icon-5" ><i class="fab fa-youtube"></i></a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("open");
+    }
+  </script>
+</body>
+</html>
